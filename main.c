@@ -3,7 +3,7 @@
 
 int main(void)
 {
-#define TEST "|%*.*d|\n", 1,-2,0
+#define TEST "|%*.*d|\n",8,6,-4
 	int nb = 0;
 	int *p = &nb;
 	fflush(stdout);
