@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   precise_int.c                                      :+:      :+:    :+:   */
+/*   handle_c.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/18 10:15:39 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/18 12:15:54 by amaroni          ###   ########.fr       */
+/*   Created: 2021/03/12 13:32:10 by amaroni           #+#    #+#             */
+/*   Updated: 2021/03/18 12:40:16 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char *precise_int(t_flags *flags, char *str)
+int	handle_c(va_list args)
 {
-	char *rt;
-	char *tmp;
-	int width;
-	int precision;
+	char c;
 
-	tmp = str;
-	width = flags->width;
-	precision = flags->precision;
-	rt = (char*)ft_calloc(width + precision + ft_strlen(tmp) + 1, sizeof(char));
-
-	if (ft_issign(*tmp))
-	{
-		rt[0] = *tmp;
-		tmp++;
-	}
-	if (!flags->minus && !flags->zero)
-		;	
-
-
-	return (ft_strdup (""));
+	c = (char)va_arg(args, int);
+	ft_putchar(c);
+	return (1);
 }

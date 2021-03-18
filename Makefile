@@ -19,8 +19,8 @@ clean_libft:
 
 #UTILS
 #........................................................................................................................................................................................................
-SRC_UTILS = 
-OBJ_UTILS = 
+SRC_UTILS =  utils/handle_d.c utils/precise_int.c utils/zero_pad_int.c ft_printf.c utils/handle_percent.c
+OBJ_UTILS =  utils/handle_d.o utils/precise_int.o utils/zero_pad_int.o ft_printf.o utils/handle_percent.o
 utils: $(OBJ_UTILS)
 clean_utils:
 	rm -rf ./utils/*.o
