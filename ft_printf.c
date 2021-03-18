@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/18 11:28:00 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/18 13:52:02 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void			init_flags(t_flags *flags)
 	flags->p = 0;
 }
 
-int				hanle_flags(va_list args, char *string, int i, t_flags *flags)
+int				handle_flags(va_list args, char *string, int i, t_flags *flags)
 {
 	if (flags->percent)	
 		return (handle_percent(string, i));
@@ -50,12 +50,11 @@ int				hanle_flags(va_list args, char *string, int i, t_flags *flags)
 	if (flags->p)
 		return (handle_p(args));
 	else
-		return (NULL);
+		return (0);
 }
 
 int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 {
-	char	*gen_str;
 	int index;
 	
 	index = i;
@@ -106,7 +105,7 @@ int			read_str(char *string, va_list args)
 	{
 		if (string[i] == '%' && string[i + 1])
 		{
-			i = handle_flags(&rt,args, string, i + 1, &flags);
+			i = fill_flags(&rt,args, string, i + 1, &flags);
 			init_flags(&flags);
 		}
 		else

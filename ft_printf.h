@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:02:23 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/18 13:23:09 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/18 13:50:27 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ typedef struct s_flags
 	int p;
 }	t_flags;
 
-int			anle_flags(va_list args, char *string, int i, t_flags *flags);
+int			handle_flags(va_list args, char *string, int i, t_flags *flags);
 int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags);
 int			read_str(char *string, va_list args);
 int			ft_printf(const char *input, ...);
 void			init_flags(t_flags *flags);;
-int				hanle_flags(va_list args, char *string, int i, t_flags *flags);;
+int				handle_flags(va_list args, char *string, int i, t_flags *flags);;
 int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags);;
 int			read_str(char *string, va_list args);;
 int			ft_printf(const char *input, ...);;
@@ -58,8 +58,9 @@ char			ull_conversion_hex_table(unsigned long long input, char c);
 char			*ulltohexstring(unsigned long long input, char c, size_t size);
 int	handle_p(va_list args);
 int	handle_percent(char *string, int i);
-char		*handle_s(va_list args);
+int	handle_s(va_list args);
 int		handle_u(va_list args);
 char *precise_int(t_flags *flags, char *str);
 char *zero_pad_int(t_flags *flags, char *str);
+int	is_convertor(char c);
 #endif

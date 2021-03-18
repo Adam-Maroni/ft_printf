@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 18:44:16 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/18 13:01:27 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/18 13:50:47 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	handle_p(va_list args)
 	gen_str = (char*)ft_calloc(size + 1, sizeof(char));
 	tmp = ulltohexstring(ull, 'x', size);
 	ft_strlcpy(gen_str, tmp, size + 1);
-	i = ft_pustr_ret(gen_str);
+	i = ft_putstr_ret(gen_str);
 	free(gen_str);
 	free(tmp);
 	return (i);

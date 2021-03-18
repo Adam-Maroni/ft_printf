@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 16:09:00 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/18 12:58:04 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/18 13:45:17 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char *int2hexstring(unsigned long input, char c, size_t size)
 
 int	handle_x(va_list args)
 {
-	char str;
+	char *str;
 	int n;
 	
 	str = (int2hexstring((unsigned long)va_arg(args, unsigned int), 'x', 8));
@@ -61,7 +61,7 @@ int	handle_x(va_list args)
 
 int	handle_X(va_list args)
 {
-	char str;
+	char *str;
 	int n;
 	
 	str = (int2hexstring((unsigned long)va_arg(args, unsigned int), 'X', 8));
