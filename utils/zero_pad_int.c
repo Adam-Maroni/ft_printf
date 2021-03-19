@@ -6,21 +6,28 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 09:04:42 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/18 13:54:12 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/19 09:03:24 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char *zero_pad_int(t_flags *flags, char *str)
+char *zero_pad_int(char *str, int padding)
 {
-	int		width;
 	char	*rt;
+	char	*tmp;
 
-	width = flags->width;
-	rt = (char*)ft_calloc(width + ft_strlen(str) + 1, sizeof(char));
-	while (width-- > (int)ft_strlen(str))
+	tmp = str;
+	rt = (char*)ft_calloc(padding + ft_strlen(tmp) + 1, sizeof(char));
+
+	if (ft_issign(*tmp))
+	{
+		rt[0] = *tmp;
+		tmp++;
+	}
+
+	while (padding-- > (int)ft_strlen(tmp))
 		ft_strlcat(rt, "0", ft_strlen(rt) + 2);
-	ft_strlcat(rt, str, ft_strlen(rt) + ft_strlen(str) + 1);
+	ft_strlcat(rt, tmp, ft_strlen(rt) + ft_strlen(tmp) + 1);
 	return (rt);
 }

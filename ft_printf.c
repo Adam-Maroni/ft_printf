@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/18 13:52:02 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/19 11:08:05 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			init_flags(t_flags *flags)
 	flags->dot = 0;
 	flags->zero = 0;
 	flags->star = 0;
-	flags->width = 0;
+	flags->width = 1;
 	flags->precision = 0;
 	flags->n_precision = 0;
 	flags->percent = 0;

@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:15:39 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/18 12:15:54 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/19 09:02:56 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,29 @@ char *precise_int(t_flags *flags, char *str)
 	int width;
 	int precision;
 
-	tmp = str;
 	width = flags->width;
 	precision = flags->precision;
-	rt = (char*)ft_calloc(width + precision + ft_strlen(tmp) + 1, sizeof(char));
+	rt = (char*)ft_calloc(width + precision + ft_strlen(str) + 1, sizeof(char));
 
-	if (ft_issign(*tmp))
+	if (precision > width)
+		return (zero_pad_int(str, precision));
+	else
 	{
-		rt[0] = *tmp;
-		tmp++;
+		if (flags->minus)
+		{
+			tmp = zero_pad_int(str, precision);
+			ft_strlcat(rt, tmp, ft_strlen(tmp) + ft_strlen(rt) + 1);
+			while (width > (int)ft_strlen(rt))
+				ft_strlcat(rt, " ", ft_strlen(rt) + 2);
+		}
+		else
+		{
+			tmp = zero_pad_int(str, precision);
+			while (width-- > (int)ft_strlen(tmp))
+				ft_strlcat(rt, " ", ft_strlen(rt) + 2);
+			ft_strlcat(rt, tmp, ft_strlen(tmp) + ft_strlen(rt) + 1);
+		}
+		free(tmp);
 	}
-	if (!flags->minus && !flags->zero)
-		;	
-
-
-	return (ft_strdup (""));
+	return (rt);
 }
