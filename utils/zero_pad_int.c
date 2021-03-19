@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 09:04:42 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/19 15:43:49 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/19 16:22:49 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ char *zero_pad_int(char *str, int padding, int minus)
 
 	if (ft_issign(*tmp))
 	{
-		rt[0] = *tmp;
-		tmp++;
+		rt[0] = *tmp++;
+		if (!minus)
+			padding--;
 	}
 	if (!minus)
 		while (padding-- > (int)ft_strlen(tmp))
