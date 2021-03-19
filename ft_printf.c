@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/19 11:08:05 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/19 15:51:50 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			init_flags(t_flags *flags)
 	flags->dot = 0;
 	flags->zero = 0;
 	flags->star = 0;
-	flags->width = 1;
+	flags->width = 0;
 	flags->precision = 0;
 	flags->n_precision = 0;
 	flags->percent = 0;
@@ -69,17 +69,17 @@ int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 		else if (string[i] == '*')
 		{
 			if (flags->dot)
-				flags->precision = va_arg(args, int);
+				flags->precision = handle_precision(args, NULL); 
 			else
-				flags->width = va_arg(args, int);
+				flags->width = handle_width(flags, args, NULL); 
 			flags->star++;
 		}
 		else if (ft_isdigit(string[i]) && !flags->dot)
-			flags->width = ft_atoi(&(string[i]));
+			flags->width = handle_width(flags, args, (&(string[i])));
 		else if (string[i] == '.')
 			flags->dot++;
 		else if (ft_isdigit(string[i]) && flags->dot)
-			flags->precision = ft_atoi(&(string[i]));
+			flags->precision = handle_precision(args, (&(string[i])));
 		else if (is_convertor(string[i]))
 		{
 			handle_convertor(flags, string[i]);
