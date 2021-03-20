@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/20 10:53:35 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/20 13:17:07 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,17 @@ int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 				flags->width = handle_width(flags, args, NULL); 
 			flags->star++;
 		}
-		else if (ft_isdigit(string[i]) && !flags->dot)
-			flags->width = handle_width(flags, args, (&(string[i])));
 		else if (string[i] == '.')
 			flags->dot++;
-		else if (ft_isdigit(string[i]) && flags->dot)
-			flags->precision = handle_precision(args, &(string[i]), flags);
+		else if (ft_isdigit(string[i]))
+		{
+			if (!flags->dot)
+				flags->width = handle_width(flags, args, (&(string[i])));
+			else
+				flags->precision = handle_precision(args, &(string[i]), flags);
+			while (ft_isdigit(string[i+1]))
+				i++;
+		}
 		else if (is_convertor(string[i]))
 		{
 			handle_convertor(flags, string[i]);
