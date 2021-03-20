@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:02:23 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/20 09:25:14 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/20 10:51:37 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ char *precise_int(t_flags *flags, char *str);
 char *zero_pad_int(char *str, t_flags *flags, int minus);
 int	is_convertor(char c);
 int	handle_width(t_flags *flags, va_list args, char *input);
-int	handle_precision(va_list args, char *input);
+int	handle_precision(va_list args, char *input, t_flags *flags);
 #endif

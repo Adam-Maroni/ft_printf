@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/19 15:51:50 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/20 10:53:35 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 		else if (string[i] == '*')
 		{
 			if (flags->dot)
-				flags->precision = handle_precision(args, NULL); 
+				flags->precision = handle_precision(args, NULL, flags); 
 			else
 				flags->width = handle_width(flags, args, NULL); 
 			flags->star++;
@@ -79,7 +79,7 @@ int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 		else if (string[i] == '.')
 			flags->dot++;
 		else if (ft_isdigit(string[i]) && flags->dot)
-			flags->precision = handle_precision(args, (&(string[i])));
+			flags->precision = handle_precision(args, &(string[i]), flags);
 		else if (is_convertor(string[i]))
 		{
 			handle_convertor(flags, string[i]);
