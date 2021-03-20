@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:43:21 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/18 12:54:15 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/20 17:17:06 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int		handle_u(va_list args)
 {
-	int i;
-	i = ft_putstr_ret(ft_uitoa(va_arg(args, unsigned int)));
+	int	i;
+	char	*str;
+	str = ft_uitoa(va_arg(args, unsigned int));
+	i = ft_putstr_ret(str);
+	free(str);
 	return (i);
 }

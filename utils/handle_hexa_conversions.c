@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 16:09:00 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/18 13:45:17 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/20 17:20:47 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char *int2hexstring(unsigned long input, char c, size_t size)
     int i;
     int y;
 
+    if (!input)
+	    return (ft_strdup("0"));
     i = 0;
     str = (char*)ft_calloc(size, sizeof(*str));
     while (input)
@@ -55,6 +57,7 @@ int	handle_x(va_list args)
 	
 	str = (int2hexstring((unsigned long)va_arg(args, unsigned int), 'x', 8));
 	n = ft_putstr_ret(str);
+	free(str);
 	return(n);
 	
 }
@@ -66,5 +69,6 @@ int	handle_X(va_list args)
 	
 	str = (int2hexstring((unsigned long)va_arg(args, unsigned int), 'X', 8));
 	n = ft_putstr_ret(str);
+	free(str);
 	return(n);
 }
