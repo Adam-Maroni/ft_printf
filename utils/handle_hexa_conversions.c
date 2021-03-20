@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 16:09:00 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/20 18:26:46 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/20 20:24:00 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,13 @@ int	handle_x(va_list args, t_flags *flags)
 	char	*rt;
 	char	*tmp;
 	char	*tmp2;
-	int	i;
+	unsigned int	i;
 
-	tmp = (int2hexstring((unsigned long)va_arg(args, unsigned int), 'x', 8));
+	i = va_arg(args, unsigned int);
+	if (!flags->precision && !i && flags->dot)
+		tmp = ft_strdup("");
+	else  
+		tmp = (int2hexstring((unsigned long)i, 'x', 8));
 	tmp2 = handle_x_precision(flags->precision, tmp, flags->dot);
 	rt = handle_x_width(flags->width, tmp2, flags->minus);
 
@@ -102,9 +106,13 @@ int	handle_X(va_list args, t_flags *flags)
 	char	*rt;
 	char	*tmp;
 	char	*tmp2;
-	int	i;
+	unsigned int	i;
 
-	tmp = (int2hexstring((unsigned long)va_arg(args, unsigned int), 'X', 8));
+	i = va_arg(args, unsigned int);
+	if (!flags->precision && !i && flags->dot)
+		tmp = ft_strdup("");
+	else  
+		tmp = (int2hexstring((unsigned long)i, 'X', 8));
 	tmp2 = handle_x_precision(flags->precision, tmp, flags->dot);
 	rt = handle_x_width(flags->width, tmp2, flags->minus);
 
