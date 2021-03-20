@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:02:23 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/19 15:44:33 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/20 09:25:14 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	handle_percent(char *string, int i);
 int	handle_s(va_list args);
 int		handle_u(va_list args);
 char *precise_int(t_flags *flags, char *str);
-char *zero_pad_int(char *str, int padding, int minus);
+char *zero_pad_int(char *str, t_flags *flags, int minus);
 int	is_convertor(char c);
 int	handle_width(t_flags *flags, va_list args, char *input);
 int	handle_precision(va_list args, char *input);

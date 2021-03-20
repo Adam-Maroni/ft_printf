@@ -6,11 +6,27 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:15:39 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/19 16:24:18 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/20 10:14:47 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+char *precise_pad_int_minus(char *str, int padding)
+{
+	char	*rt;
+	char	*tmp;
+
+	tmp = str;
+	rt = (char*)ft_calloc(padding + ft_strlen(tmp) + 1, sizeof(char));
+
+	if (ft_issign(*tmp))
+		rt[0] = *tmp++;
+	while (padding-- > (int)ft_strlen(tmp))
+		ft_strlcat(rt, "0", ft_strlen(rt) + 2);
+	ft_strlcat(rt, tmp, ft_strlen(rt) + ft_strlen(tmp) + 1);
+	return (rt);
+}
 
 char *precise_pad_int(char *str, int padding, int minus)
 {
@@ -42,7 +58,9 @@ char *precise_int(t_flags *flags, char *str)
 	width = flags->width;
 	precision = flags->precision;
 
-	if (precision > width)
+	if (precision > width && flags->minus)
+		return (precise_pad_int_minus(str, precision));
+	else if (precision > width)
 		return (precise_pad_int(str, precision, flags->minus));
 	else
 	{
