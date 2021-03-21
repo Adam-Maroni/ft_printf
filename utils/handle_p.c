@@ -6,62 +6,76 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 18:44:16 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 10:31:40 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 14:37:17 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char			ull_conversion_hex_table(unsigned long input, char c)
+char		*handle_p_width(int width, char *str, int minus)
 {
-    if (input > 9 && c == 'x')
-        return ('a' + (input - 10));
-    if (input > 9 && c == 'X')
-        return ('A' + (input - 10));
-    return ('0' + input);
+	char *rt;
+
+	rt = (char*)ft_calloc(width + ft_strlen(str) + 1, sizeof(char));
+
+	if(!minus)
+		while (width-- > (int)ft_strlen(str))
+			ft_strlcat(rt, " ", ft_strlen(rt) + 2);
+	ft_strlcat(rt, str, ft_strlen(rt) + ft_strlen(str) + 1);
+	if (minus)
+		while (width > (int)ft_strlen(rt))
+			ft_strlcat(rt, " ", ft_strlen(rt) + 2);
+	return (rt);
 }
 
-char			*ulltohexstring(unsigned long input, char c, size_t size)
+char		*handle_p_precision(int precision, char *str)
 {
-    char *str;
-    char *output;
-    int i;
-    int y;
+	char	*rt;
 
-    i = 0;
-    str = (char*)ft_calloc(size, sizeof(*str));
-    while (input % 16 > 0)
-    {
-	    str[i] = ull_conversion_hex_table(input % 16, c);
-	    input /= 16;
-	    i++;
-    }
-    i = ft_strlen(str);
-    y = 0;
-    output = ft_strdup(str);
-    while (i-- > 0)
-    {
-        output[y] = str[i];
-        y++;
-    }
-    free (str);
-    return (output);
+	rt = (char*)ft_calloc(precision + ft_strlen(str) + 1, sizeof(char));
+	while (precision-- > (int)ft_strlen(str))
+		ft_strlcat(rt, "0", ft_strlen(rt) + 2);
+	ft_strlcat(rt, str, ft_strlen(rt) + ft_strlen(str) + 1);
+	return (rt);
 }
 
-int	handle_p(va_list args)
+char		*add_0x(char *src)
 {
-	size_t			size;
-	char			*gen_str;
-	char			*tmp;
-	unsigned long		i;
+	char *rt;
+
+	rt = (char*)ft_calloc(ft_strlen(src) + 3, sizeof(char));
+	ft_strlcat(rt, "0x", 3);
+	ft_strlcat(rt, src, ft_strlen(src) + 3);
+	free(src);
+	return (rt);
+}
+
+int	handle_p(va_list args, t_flags *flags)
+{
+	unsigned long	i;
+	char		*tmp;
+	char		*tmp2;
+	char		*tmp3;
+	char		*rt;
 	
-	size = 16;
-	i = (unsigned long)(va_arg(args, void *));
 	
-	
-	gen_str = "0x";
-	tmp = ulltohexstring(i, 'x', size);
-	i = ft_putstr_ret(gen_str) + ft_putstr_ret(tmp);
+	if (!(i = (unsigned long)va_arg(args, void*)))
+		tmp = "(nil)";
+	else
+		tmp = int2hexstring(i, 'x', 32);
+
+	tmp2 = (char*)ft_calloc(36, sizeof(char));
+	ft_strlcat(tmp2, tmp, ft_strlen(tmp2) + ft_strlen(tmp) + 1);
+	tmp3 = handle_p_precision(flags->precision, tmp2);
+	if (i)
+		tmp3 = add_0x(tmp3);
+	rt = handle_p_width(flags->width, tmp3, flags->minus);
+
+
+	i = ft_putstr_ret(rt);
 	free(tmp);
-	return (i);
+	free(tmp2);
+	free(tmp3);
+	free(rt);
+	return((int)i);
 }

@@ -3,10 +3,10 @@
 
 int main(void)
 {
-#define TEST "|%p|\n", 0x65965
+#define TEST "|%*p|\n", 9, 0xc7e1ab0
 	int nb = 0;
 	int *p = &nb;
-	fflush(stdout);
+	//fflush(stdout);
 	ft_printf("ftprintf: ");
 	nb = ft_printf(TEST);
 	printf("%d\n", nb);

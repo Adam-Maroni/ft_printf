@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 16:09:00 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/20 20:59:03 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 14:19:21 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char *int2hexstring(unsigned long input, char c, size_t size)
     if (!input)
 	    return (ft_strdup("0"));
     i = 0;
-    str = (char*)ft_calloc(size, sizeof(*str));
+    str = (char*)ft_calloc(size + 1, sizeof(*str));
     while (input)
     {
 	    str[i] = conversion_hex_table(input % 16, c);

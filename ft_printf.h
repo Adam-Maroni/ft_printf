@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:02:23 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 10:21:20 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 13:18:23 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char conversion_hex_table(unsigned long input, char c);
 char *int2hexstring(unsigned long input, char c, size_t size);
 int	handle_x(va_list args, t_flags *flags);
 int	handle_X(va_list args, t_flags *flags);
-int	handle_p(va_list args);
+int	handle_p(va_list args, t_flags *flags);
 int	handle_percent(char *string, int i);
 int	handle_s(va_list args, t_flags *flags);
 int		handle_u(va_list args, t_flags *flags);

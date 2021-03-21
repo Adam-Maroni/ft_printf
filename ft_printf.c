@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/20 18:34:22 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 13:18:39 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				handle_flags(va_list args, char *string, int i, t_flags *flags)
 	if (flags->X)
 		return (handle_X(args, flags));
 	if (flags->p)
-		return (handle_p(args));
+		return (handle_p(args, flags));
 	else
 		return (0);
 }
