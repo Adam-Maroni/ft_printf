@@ -6,15 +6,15 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:32:10 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 16:49:56 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 21:28:51 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char 	*handle_c_width(int width, int minus, char c)
+char	*handle_c_width(int width, int minus, char c)
 {
-	int 	i;
+	int		i;
 	char	*str;
 
 	i = 0;
@@ -29,19 +29,19 @@ char 	*handle_c_width(int width, int minus, char c)
 	if (minus)
 		while (width > (int)ft_strlen(str))
 			ft_strlcat(str, " ", ft_strlen(str) + 2);
-	return (str);	
+	return (str);
 }
 
-int	handle_c(va_list args, t_flags *flags)
+int		handle_c(va_list args, t_flags *flags)
 {
-	char *tmp;
-	unsigned char c;
-	int	rt;
+	unsigned char	c;
+	char	*tmp;
+	int		rt;
 
 	rt = 0;
 	c = (unsigned char)va_arg(args, int);
 	tmp = handle_c_width(flags->width, flags->minus, c);
-	rt = ft_putstr_ret(tmp);	
+	rt = ft_putstr_ret(tmp);
 	free(tmp);
 	return (rt);
 }

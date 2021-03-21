@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:01:16 by amaroni           #+#    #+#             */
-/*   Updated: 2021/02/17 08:01:17 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 20:47:32 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char			*ft_uitoa(unsigned int n)
 
 	if (n == 0)
 		return (ft_strdup("0"));
-	else 
+	else
 	{
 		if (!(array = (char*)malloc((count_digit((unsigned int)(n)) + 1)
 						* sizeof(*array))))
@@ -48,5 +48,3 @@ char			*ft_uitoa(unsigned int n)
 	}
 	return (array);
 }
-
-
