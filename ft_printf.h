@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:02:23 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 13:18:23 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 17:01:47 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,15 @@ typedef struct s_flags
 	int p;
 }	t_flags;
 
-int			handle_flags(va_list args, char *string, int i, t_flags *flags);
+int				handle_flags(va_list args, t_flags *flags);
 int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags);
 int			read_str(char *string, va_list args);
 int			ft_printf(const char *input, ...);
 void			init_flags(t_flags *flags);;
-int				handle_flags(va_list args, char *string, int i, t_flags *flags);;
 int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags);;
 int			read_str(char *string, va_list args);;
 int			ft_printf(const char *input, ...);;
-int	handle_percent(char *string, int i);;
-int	handle_c(va_list args);;
+int	handle_c(va_list args, t_flags *flags);
 int main(void);
 void	handle_convertor(t_flags *flags, char c);
 int handle_d(t_flags *flags, va_list args);
@@ -55,7 +53,7 @@ char *int2hexstring(unsigned long input, char c, size_t size);
 int	handle_x(va_list args, t_flags *flags);
 int	handle_X(va_list args, t_flags *flags);
 int	handle_p(va_list args, t_flags *flags);
-int	handle_percent(char *string, int i);
+int	handle_percent(void);
 int	handle_s(va_list args, t_flags *flags);
 int		handle_u(va_list args, t_flags *flags);
 char *precise_int(t_flags *flags, char *str);

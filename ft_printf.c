@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 13:18:39 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 17:02:05 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void			init_flags(t_flags *flags)
 	flags->p = 0;
 }
 
-int				handle_flags(va_list args, char *string, int i, t_flags *flags)
+int				handle_flags(va_list args, t_flags *flags)
 {
 	if (flags->percent)	
-		return (handle_percent(string, i));
+		return (handle_percent());
 	if (flags->c)
-		return (handle_c(args));
+		return (handle_c(args, flags));
 	if (flags->d)
 		return (handle_d(flags, args));
 	if (flags->s)
@@ -61,7 +61,11 @@ int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 	while (string[i] && !ft_isspace(string[i]))
 	{
 		if (string[i] == '%')
+		{
 			flags->percent++;
+			i++;
+			break;
+		}
 		else if (string[i] == '-')
 			flags->minus++;
 		else if (string[i] == '0' && !flags->dot)
@@ -93,7 +97,7 @@ int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 		}
 		i++;
 	}
-	*rt += handle_flags(args, string, i, flags);
+	*rt += handle_flags(args, flags);
 	return (i);
 }
 
