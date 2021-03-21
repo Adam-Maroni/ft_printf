@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 18:44:16 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 14:37:17 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 15:52:03 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	handle_p(va_list args, t_flags *flags)
 	
 	
 	if (!(i = (unsigned long)va_arg(args, void*)))
-		tmp = "(nil)";
+		tmp = ft_strdup("(nil)");
 	else
 		tmp = int2hexstring(i, 'x', 32);
 
