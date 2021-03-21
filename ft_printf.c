@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 17:02:05 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 22:48:46 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			init_flags(t_flags *flags)
 
 int				handle_flags(va_list args, t_flags *flags)
 {
-	if (flags->percent)	
+	if (flags->percent)
 		return (handle_percent());
 	if (flags->c)
 		return (handle_c(args, flags));
@@ -56,7 +56,7 @@ int				handle_flags(va_list args, t_flags *flags)
 int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 {
 	int index;
-	
+
 	index = i;
 	while (string[i] && !ft_isspace(string[i]))
 	{
@@ -64,7 +64,7 @@ int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 		{
 			flags->percent++;
 			i++;
-			break;
+			break ;
 		}
 		else if (string[i] == '-')
 			flags->minus++;
@@ -73,9 +73,9 @@ int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 		else if (string[i] == '*')
 		{
 			if (flags->dot)
-				flags->precision = handle_precision(args, NULL, flags); 
+				flags->precision = handle_precision(args, NULL, flags);
 			else
-				flags->width = handle_width(flags, args, NULL); 
+				flags->width = handle_width(flags, args, NULL);
 			flags->star++;
 		}
 		else if (string[i] == '.')
@@ -86,14 +86,14 @@ int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 				flags->width = handle_width(flags, args, (&(string[i])));
 			else
 				flags->precision = handle_precision(args, &(string[i]), flags);
-			while (ft_isdigit(string[i+1]))
+			while (ft_isdigit(string[i + 1]))
 				i++;
 		}
 		else if (is_convertor(string[i]))
 		{
 			handle_convertor(flags, string[i]);
 			i++;
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -101,12 +101,12 @@ int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 	return (i);
 }
 
-int			read_str(char *string, va_list args)
+int		read_str(char *string, va_list args)
 {
-	int i;
-	int rt;
-	t_flags flags;
-	
+	int		i;
+	int		rt;
+	t_flags	flags;
+
 	i = 0;
 	rt = 0;
 	init_flags(&flags);
@@ -114,7 +114,7 @@ int			read_str(char *string, va_list args)
 	{
 		if (string[i] == '%' && string[i + 1])
 		{
-			i = fill_flags(&rt,args, string, i + 1, &flags);
+			i = fill_flags(&rt, args, string, i + 1, &flags);
 			init_flags(&flags);
 		}
 		else
@@ -129,8 +129,8 @@ int			read_str(char *string, va_list args)
 
 int			ft_printf(const char *input, ...)
 {
-	char		*string;
-	va_list		args;
+	va_list	args;
+	char	*string;
 	int		rt;
 
 	rt = 0;

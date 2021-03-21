@@ -6,19 +6,18 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:30:26 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/20 18:11:14 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 22:21:49 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char		*handle_s_width(int width, char *str, int minus)
+char	*handle_s_width(int width, char *str, int minus)
 {
 	char *rt;
 
 	rt = (char*)ft_calloc(width + ft_strlen(str) + 1, sizeof(char));
-
-	if(!minus)
+	if (!minus)
 		while (width-- > (int)ft_strlen(str))
 			ft_strlcat(rt, " ", ft_strlen(rt) + 2);
 	ft_strlcat(rt, str, ft_strlen(rt) + ft_strlen(str) + 1);
@@ -28,10 +27,10 @@ char		*handle_s_width(int width, char *str, int minus)
 	return (rt);
 }
 
-char		*handle_s_precision(int precision, char *str, int dot)
+char	*handle_s_precision(int precision, char *str, int dot)
 {
 	char	*rt;
-	int	i;
+	int		i;
 
 	if (precision < (int)ft_strlen(str) && dot)
 	{
@@ -50,12 +49,11 @@ int		handle_s(va_list args, t_flags *flags)
 	char	*rt;
 	char	*tmp;
 	char	*tmp2;
-	int	i;
+	int		i;
 
 	tmp = (va_arg(args, char*));
 	tmp2 = handle_s_precision(flags->precision, tmp, flags->dot);
 	rt = handle_s_width(flags->width, tmp2, flags->minus);
-
 	free(tmp2);
 	i = ft_putstr_ret(rt);
 	free(rt);

@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 14:59:47 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/19 15:17:21 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 22:05:11 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ int	handle_width(t_flags *flags, va_list args, char *input)
 		flags->minus = 1;
 	}
 	return (rt);
-
 }

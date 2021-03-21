@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:15:39 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 21:34:00 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/21 21:56:16 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*precise_pad_int(char *str, int padding, int minus)
 
 	tmp = str;
 	rt = (char*)ft_calloc(padding + ft_strlen(tmp) + 1, sizeof(char));
-
 	if (ft_issign(*tmp))
 		rt[0] = *tmp++;
 	if (!minus)
@@ -51,33 +50,26 @@ char	*precise_int(t_flags *flags, char *str)
 {
 	char *rt;
 	char *tmp;
-	int width;
-	int precision;
 
-	width = flags->width;
-	precision = flags->precision;
-	if (precision > width && flags->minus)
-		return (precise_pad_int_minus(str, precision));
-	else if (precision > width)
-		return (precise_pad_int(str, precision, flags->minus));
+	if (flags->precision > flags->width && flags->minus)
+		return (precise_pad_int_minus(str, flags->precision));
+	else if (flags->precision > flags->width)
+		return (precise_pad_int(str, flags->precision, flags->minus));
+	rt = (char*)ft_calloc(flags->width + flags->precision
+			+ ft_strlen(str) + 1, sizeof(char));
+	tmp = precise_pad_int(str, flags->precision, 0);
+	if (flags->minus)
+	{
+		ft_strlcat(rt, tmp, ft_strlen(tmp) + ft_strlen(rt) + 1);
+		while (flags->width > (int)ft_strlen(rt))
+			ft_strlcat(rt, " ", ft_strlen(rt) + 2);
+	}
 	else
 	{
-		rt = (char*)ft_calloc(width + precision + ft_strlen(str) + 1, sizeof(char));
-		if (flags->minus)
-		{
-			tmp = precise_pad_int(str, precision, 0);
-			ft_strlcat(rt, tmp, ft_strlen(tmp) + ft_strlen(rt) + 1);
-			while (width > (int)ft_strlen(rt))
-				ft_strlcat(rt, " ", ft_strlen(rt) + 2);
-		}
-		else
-		{
-			tmp = precise_pad_int(str, precision, 0);
-			while (width-- > (int)ft_strlen(tmp))
-				ft_strlcat(rt, " ", ft_strlen(rt) + 2);
-			ft_strlcat(rt, tmp, ft_strlen(tmp) + ft_strlen(rt) + 1);
-		}
-		free(tmp);
+		while (flags->width-- > (int)ft_strlen(tmp))
+			ft_strlcat(rt, " ", ft_strlen(rt) + 2);
+		ft_strlcat(rt, tmp, ft_strlen(tmp) + ft_strlen(rt) + 1);
 	}
+	free(tmp);
 	return (rt);
 }
