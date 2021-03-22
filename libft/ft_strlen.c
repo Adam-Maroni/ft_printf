@@ -6,7 +6,7 @@
 /*   By: amaroni <amaroni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 11:46:54 by amaroni           #+#    #+#             */
-/*   Updated: 2020/12/29 16:09:03 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/22 15:08:54 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 size_t	ft_strlen(const char *s)
 {
-	unsigned long rt;
+	size_t	rt;
 
 	rt = 0;
+	if (!s)
+		return (rt);
 	while (*(s + rt) != '\0')
 		rt++;
 	return (rt);
