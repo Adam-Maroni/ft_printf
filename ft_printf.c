@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 22:48:46 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/22 08:41:23 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void			init_flags(t_flags *flags)
 	flags->minus = 0;
 	flags->dot = 0;
 	flags->zero = 0;
-	flags->star = 0;
 	flags->width = 0;
 	flags->precision = 0;
 	flags->n_precision = 0;
@@ -55,43 +54,26 @@ int				handle_flags(va_list args, t_flags *flags)
 
 int			fill_flags(int *rt, va_list args, char *string, int i, t_flags *flags)
 {
-	int index;
-
-	index = i;
 	while (string[i] && !ft_isspace(string[i]))
 	{
-		if (string[i] == '%')
-		{
-			flags->percent++;
-			i++;
-			break ;
-		}
+		if (string[i] == '.')
+			flags->dot++;
 		else if (string[i] == '-')
 			flags->minus++;
 		else if (string[i] == '0' && !flags->dot)
 			flags->zero++;
-		else if (string[i] == '*')
-		{
-			if (flags->dot)
-				flags->precision = handle_precision(args, NULL, flags);
-			else
-				flags->width = handle_width(flags, args, NULL);
-			flags->star++;
-		}
-		else if (string[i] == '.')
-			flags->dot++;
+		else if (string[i] == '*' && flags->dot)
+			flags->precision = handle_precision(args, NULL, flags);
+		else if (string[i] == '*' && !flags->dot)
+			flags->width = handle_width(flags, args, NULL);
 		else if (ft_isdigit(string[i]))
+			i += handle_digit(flags, args, &(string[i]));
+		else
 		{
-			if (!flags->dot)
-				flags->width = handle_width(flags, args, (&(string[i])));
-			else
-				flags->precision = handle_precision(args, &(string[i]), flags);
-			while (ft_isdigit(string[i + 1]))
-				i++;
-		}
-		else if (is_convertor(string[i]))
-		{
-			handle_convertor(flags, string[i]);
+			if (string[i] == '%')
+				flags->percent++;
+			else if (is_convertor(string[i]))
+				handle_convertor(flags, string[i]);
 			i++;
 			break ;
 		}

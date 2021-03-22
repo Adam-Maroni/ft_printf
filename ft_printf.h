@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:02:23 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 17:01:47 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/22 08:30:55 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_flags
 	int minus;
 	int dot;
 	int zero;
-	int star;
 	int width;
 	int precision;
 	int n_precision;
@@ -61,4 +60,5 @@ char *zero_pad_int(char *str, t_flags *flags, int minus);
 int	is_convertor(char c);
 int	handle_width(t_flags *flags, va_list args, char *input);
 int	handle_precision(va_list args, char *input, t_flags *flags);
+int	handle_digit(t_flags *flags, va_list args, char *string);
 #endif
