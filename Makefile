@@ -19,8 +19,8 @@ clean_libft:
 
 #UTILS
 #........................................................................................................................................................................................................
-SRC_UTILS =  utils/handle_c.c utils/handle_convertor.c utils/handle_d.c utils/handle_hexa_conversions.c utils/handle_p.c utils/handle_percent.c utils/handle_s.c utils/handle_u.c utils/precise_int.c utils/zero_pad_int.c utils/is_convertor.c utils/handle_width.c utils/handle_precision.c utils/handle_digit.c
-OBJ_UTILS = utils/handle_c.o utils/handle_convertor.o utils/handle_d.o utils/handle_hexa_conversions.o utils/handle_p.o utils/handle_percent.o utils/handle_s.o utils/handle_u.o utils/precise_int.o utils/zero_pad_int.o utils/is_convertor.o utils/handle_width.o utils/handle_precision.o utils/handle_digit.o
+SRC_UTILS =  utils/handle_c.c utils/handle_convertor.c utils/handle_d.c utils/handle_hexa_conversions.c utils/handle_p.c utils/handle_percent.c utils/handle_s.c utils/handle_u.c utils/precise_int.c utils/zero_pad_int.c utils/is_convertor.c utils/handle_width.c utils/handle_precision.c utils/handle_digit.c utils/handle_star.c
+OBJ_UTILS = utils/handle_c.o utils/handle_convertor.o utils/handle_d.o utils/handle_hexa_conversions.o utils/handle_p.o utils/handle_percent.o utils/handle_s.o utils/handle_u.o utils/precise_int.o utils/zero_pad_int.o utils/is_convertor.o utils/handle_width.o utils/handle_precision.o utils/handle_digit.o utils/handle_star.o
 utils: $(OBJ_UTILS)
 clean_utils:
 	rm -rf ./utils/*.o
