@@ -6,13 +6,14 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 11:15:33 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 16:58:13 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/22 22:21:35 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	handle_percent(void)
+void	handle_percent(t_flags *flags)
 {
-	return (ft_putstr_ret("%\0"));
+	flags->percent++;
+	flags->done++;
 }

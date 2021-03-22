@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:02:23 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/22 10:27:35 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/22 22:22:08 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_flags
 	int zero;
 	int width;
 	int precision;
-	int n_precision;
 	int done;
+	int space;
 	int percent;
 	int c;
 	int d;
@@ -51,7 +51,7 @@ char *int2hexstring(unsigned long input, char c, size_t size);
 int	handle_x(va_list args, t_flags *flags);
 int	handle_X(va_list args, t_flags *flags);
 int	handle_p(va_list args, t_flags *flags);
-int	handle_percent(void);
+void	handle_percent(t_flags *flags);
 int	handle_s(va_list args, t_flags *flags);
 int		handle_u(va_list args, t_flags *flags);
 char *precise_int(t_flags *flags, char *str);

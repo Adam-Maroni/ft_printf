@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/22 10:26:55 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/22 22:21:07 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	init_flags(t_flags *flags)
 	flags->zero = 0;
 	flags->width = 0;
 	flags->precision = 0;
-	flags->n_precision = 0;
 	flags->percent = 0;
+	flags->done = 0;
+	flags->space = 0;
 	flags->c = 0;
 	flags->d = 0;
 	flags->s = 0;
@@ -33,7 +34,7 @@ void	init_flags(t_flags *flags)
 int		handle_flags(va_list args, t_flags *flags)
 {
 	if (flags->percent)
-		return (handle_percent());
+		return (ft_putstr_ret("%\0"));
 	if (flags->c)
 		return (handle_c(args, flags));
 	if (flags->d)
@@ -54,7 +55,7 @@ int		handle_flags(va_list args, t_flags *flags)
 
 void	fill_flags(int *rt, va_list args, char **string, t_flags *flags)
 {
-	while (**string && !ft_isspace(**string))
+	while (**string && !flags->done)
 	{
 		if (**string == '.')
 			flags->dot++;
@@ -66,15 +67,12 @@ void	fill_flags(int *rt, va_list args, char **string, t_flags *flags)
 			handle_star(flags, args);
 		else if (ft_isdigit(**string))
 			*string += handle_digit(flags, args, *string);
-		else
-		{
-			if (**string == '%')
-				flags->percent++;
-			else if (is_convertor(**string))
-				handle_convertor(flags, **string);
-			(*string)++;
-			break ;
-		}
+		else if (**string == '%')
+			handle_percent(flags);
+		else if (is_convertor(**string))
+			handle_convertor(flags, **string);
+		else if (ft_isspace(**string))
+			flags->space++;
 		(*string)++;
 	}
 	*rt += handle_flags(args, flags);

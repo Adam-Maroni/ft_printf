@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 13:30:24 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/13 13:44:26 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/22 22:13:27 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void	handle_convertor(t_flags *flags, char c)
 		flags->u++;
 	if (c == 'p')
 		flags->p++;
+	flags->done = 1;
 }
