@@ -6,7 +6,7 @@
 /*   By: amaroni <amaroni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:58:55 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/18 08:32:06 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:33:59 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)
 		(void *), void (*del)(void *));
 void				ft_putchar(char c);
+int				ft_putchar_ret(char c);
 void				ft_putstr(const char *str);
 int					ft_isspace(int c);
 char				*ft_uitoa(unsigned int n);

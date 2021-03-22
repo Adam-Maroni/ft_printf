@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:32:10 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 22:38:32 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:38:27 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,26 @@ char	*handle_c_width(int width, int minus, char c)
 
 int		handle_c(va_list args, t_flags *flags)
 {
-	unsigned char	c;
-	char			*tmp;
-	int			rt;
+	unsigned char		c;
+	char	*tmp;
+	int		rt;
 
 	rt = 0;
 	c = (unsigned char)va_arg(args, int);
-	tmp = handle_c_width(flags->width, flags->minus, c);
-	rt = ft_putstr_ret(tmp);
+	if (!c)
+	{
+		if (flags->minus)
+			rt += ft_putchar_ret((char)c);
+		tmp = handle_c_width(flags->width - rt, flags->minus, '\0');
+		rt += ft_putstr_ret(tmp);
+		if (!flags->minus)
+			rt += ft_putchar_ret((char)c);
+	}
+	else
+	{
+		tmp = handle_c_width(flags->width, flags->minus, c);
+		rt += ft_putstr_ret(tmp);
+	}
 	free(tmp);
 	return (rt);
 }
