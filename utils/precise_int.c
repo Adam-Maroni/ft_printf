@@ -6,13 +6,13 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:15:39 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 21:56:16 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/23 10:04:20 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char	*precise_pad_int_minus(char *str, int padding)
+char	*p_int2(char *str, int padding)
 {
 	char	*rt;
 	char	*tmp;
@@ -27,15 +27,17 @@ char	*precise_pad_int_minus(char *str, int padding)
 	return (rt);
 }
 
-char	*precise_pad_int(char *str, int padding, int minus)
+char	*p_int1(char *str, int padding, int minus, int space)
 {
 	char	*rt;
 	char	*tmp;
 
 	tmp = str;
-	rt = (char*)ft_calloc(padding + ft_strlen(tmp) + 1, sizeof(char));
+	rt = (char*)ft_calloc(padding + ft_strlen(tmp) + 2, sizeof(char));
 	if (ft_issign(*tmp))
 		rt[0] = *tmp++;
+	if (space)
+		ft_strlcat(rt, " ", ft_strlen(rt) + 2);
 	if (!minus)
 		while (padding-- > (int)ft_strlen(tmp))
 			ft_strlcat(rt, "0", ft_strlen(rt) + 2);
@@ -52,20 +54,15 @@ char	*precise_int(t_flags *flags, char *str)
 	char *tmp;
 
 	if (flags->precision > flags->width && flags->minus)
-		return (precise_pad_int_minus(str, flags->precision));
+		return (p_int2(str, flags->precision));
 	else if (flags->precision > flags->width)
-		return (precise_pad_int(str, flags->precision, flags->minus));
-	rt = (char*)ft_calloc(flags->width + flags->precision
-			+ ft_strlen(str) + 1, sizeof(char));
-	tmp = precise_pad_int(str, flags->precision, 0);
+		return (p_int1(str, flags->precision, flags->minus, flags->space));
+	tmp = p_int1(str, flags->precision, 0, flags->space);
 	if (flags->minus)
-	{
-		ft_strlcat(rt, tmp, ft_strlen(tmp) + ft_strlen(rt) + 1);
-		while (flags->width > (int)ft_strlen(rt))
-			ft_strlcat(rt, " ", ft_strlen(rt) + 2);
-	}
+		rt = p_int1(tmp, flags->width, flags->minus, flags->space);
 	else
 	{
+		rt = (char*)ft_calloc(flags->width + ft_strlen(tmp) + 1, sizeof(char));
 		while (flags->width-- > (int)ft_strlen(tmp))
 			ft_strlcat(rt, " ", ft_strlen(rt) + 2);
 		ft_strlcat(rt, tmp, ft_strlen(tmp) + ft_strlen(rt) + 1);

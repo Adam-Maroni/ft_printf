@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:02:23 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/22 22:22:08 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/23 10:04:47 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ int	handle_p(va_list args, t_flags *flags);
 void	handle_percent(t_flags *flags);
 int	handle_s(va_list args, t_flags *flags);
 int		handle_u(va_list args, t_flags *flags);
-char *precise_int(t_flags *flags, char *str);
+char	*p_int1(char *str, int padding, int minus, int space);
+char	*precise_int(t_flags *flags, char *str);
+char	*p_int2(char *str, int padding);
 char *zero_pad_int(char *str, t_flags *flags, int minus);
 int	is_convertor(char c);
 int	handle_width(t_flags *flags, va_list args, char *input);

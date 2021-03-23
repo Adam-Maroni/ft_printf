@@ -3,7 +3,7 @@
 
 int main(void)
 {
-#define TEST "|%d|\n", 6
+#define TEST "|%-3.7i|\n", 3267
 	int nb = 0;
 	int *p = &nb;
 	//fflush(stdout);
