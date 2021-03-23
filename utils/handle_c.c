@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:32:10 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/22 17:38:27 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/23 10:55:54 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*handle_c_width(int width, int minus, char c)
 
 int		handle_c(va_list args, t_flags *flags)
 {
-	unsigned char		c;
+	char	c;
 	char	*tmp;
 	int		rt;
 

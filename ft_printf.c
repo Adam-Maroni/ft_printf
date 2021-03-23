@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/22 22:21:07 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:16:58 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_flags(t_flags *flags)
 	flags->s = 0;
 	flags->u = 0;
 	flags->x = 0;
-	flags->X = 0;
+	flags->x_maj = 0;
 	flags->p = 0;
 }
 
@@ -45,8 +45,8 @@ int		handle_flags(va_list args, t_flags *flags)
 		return (handle_u(args, flags));
 	if (flags->x)
 		return (handle_x(args, flags));
-	if (flags->X)
-		return (handle_X(args, flags));
+	if (flags->x_maj)
+		return (handle_x_maj(args, flags));
 	if (flags->p)
 		return (handle_p(args, flags));
 	else

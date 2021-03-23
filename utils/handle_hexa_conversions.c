@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 16:09:00 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/21 22:35:01 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:18:01 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		handle_x(va_list args, t_flags *flags)
 	return ((int)i);
 }
 
-int		handle_X(va_list args, t_flags *flags)
+int		handle_x_maj(va_list args, t_flags *flags)
 {
 	char			*rt;
 	char			*tmp;
