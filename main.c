@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "./ft_printf.h"
-#define TEST "|%5%|\n"
+#define TEST "|%5p|\n", NULL
 
 int main(void)
 {
