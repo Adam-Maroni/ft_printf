@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 18:44:16 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/25 14:15:08 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/26 10:40:53 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ char	*handle_p_width(int width, char *str, int minus)
 {
 	char *rt;
 
-	rt = (char*)ft_calloc(width + ft_strlen(str) + 1, sizeof(char));
+	if (!(rt = (char*)ft_calloc(width + ft_strlen(str) + 1, sizeof(char))))
+		return (NULL);
 	if (!minus)
 		while (width-- > (int)ft_strlen(str))
 			ft_strlcat(rt, " ", ft_strlen(rt) + 2);
@@ -31,7 +32,8 @@ char	*handle_p_precision(int precision, char *str)
 {
 	char	*rt;
 
-	rt = (char*)ft_calloc(precision + ft_strlen(str) + 1, sizeof(char));
+	if (!(rt = (char*)ft_calloc(precision + ft_strlen(str) + 1, sizeof(char))))
+		return (NULL);
 	while (precision-- > (int)ft_strlen(str))
 		ft_strlcat(rt, "0", ft_strlen(rt) + 2);
 	ft_strlcat(rt, str, ft_strlen(rt) + ft_strlen(str) + 1);
@@ -42,7 +44,8 @@ char	*add_0x(char *src)
 {
 	char *rt;
 
-	rt = (char*)ft_calloc(ft_strlen(src) + 3, sizeof(char));
+	if (!(rt = (char*)ft_calloc(ft_strlen(src) + 3, sizeof(char))))
+		return (NULL);
 	ft_strlcat(rt, "0x", 3);
 	ft_strlcat(rt, src, ft_strlen(src) + 3);
 	free(src);
@@ -61,7 +64,8 @@ int		handle_p(va_list args, t_flags *flags)
 		tmp = ft_strdup("0x0");
 	else
 		tmp = int2hexstring(i, 'x', 32);
-	tmp2 = (char*)ft_calloc(36, sizeof(char));
+	if (!(tmp2 = (char*)ft_calloc(36, sizeof(char))))
+		return (0);
 	ft_strlcat(tmp2, tmp, ft_strlen(tmp2) + ft_strlen(tmp) + 1);
 	tmp3 = handle_p_precision(flags->precision, tmp2);
 	if (i)

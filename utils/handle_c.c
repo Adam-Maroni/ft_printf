@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:32:10 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/23 10:55:54 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/26 10:36:56 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*handle_c_width(int width, int minus, char c)
 	char	*str;
 
 	i = 0;
-	str = (char*)ft_calloc(width + 2, sizeof(char));
+	if (!(str = (char*)ft_calloc(width + 2, sizeof(char))))
+		return (NULL);
 	if (!minus)
 		while (width-- > 1)
 		{

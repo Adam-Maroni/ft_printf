@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 09:04:42 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/23 09:00:59 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/26 11:09:06 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ char	*zero_pad_int(char *str, t_flags *flags, int minus)
 		padding = flags->precision;
 	else
 		padding = flags->width;
-	rt = (char*)ft_calloc(padding + ft_strlen(tmp) + 2, sizeof(char));
+	if (!(rt = (char*)ft_calloc(padding + ft_strlen(tmp) + 2, sizeof(char))))
+		return (NULL);
 	if (ft_issign(*tmp))
 	{
 		rt[0] = *tmp++;

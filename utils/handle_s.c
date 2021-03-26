@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:30:26 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/26 07:37:01 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/26 10:41:40 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ char	*handle_s_width(int width, char *str, int minus)
 
 	tmp = str;
 	if (!tmp)
-		tmp = (char*)ft_calloc(1, sizeof(char));
-	rt = (char*)ft_calloc(width + ft_strlen(tmp) + 1, sizeof(char));
+		if (!(tmp = (char*)ft_calloc(1, sizeof(char))))
+			return (NULL);
+	if (!(rt = (char*)ft_calloc(width + ft_strlen(tmp) + 1, sizeof(char))))
+		return (NULL);
 	if (!minus)
 		while (width-- > (int)ft_strlen(tmp))
 			ft_strlcat(rt, " ", ft_strlen(rt) + 2);
@@ -43,7 +45,8 @@ char	*handle_s_precision(int precision, char *str, int dot)
 	else if (precision < (int)ft_strlen(str) && dot)
 	{
 		i = -1;
-		rt = (char*)ft_calloc(ft_strlen(str) + 1, sizeof(char));
+		if (!(rt = (char*)ft_calloc(ft_strlen(str) + 1, sizeof(char))))
+			return (NULL);
 		while (++i < precision)
 			rt[i] = str[i];
 	}

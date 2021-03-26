@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:15:39 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/23 10:04:20 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/26 11:12:37 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*p_int2(char *str, int padding)
 	char	*tmp;
 
 	tmp = str;
-	rt = (char*)ft_calloc(padding + ft_strlen(tmp) + 1, sizeof(char));
+	if (!(rt = (char*)ft_calloc(padding + ft_strlen(tmp) + 1, sizeof(char))))
+		return (NULL);
 	if (ft_issign(*tmp))
 		rt[0] = *tmp++;
 	while (padding-- > (int)ft_strlen(tmp))
@@ -33,7 +34,8 @@ char	*p_int1(char *str, int padding, int minus, int space)
 	char	*tmp;
 
 	tmp = str;
-	rt = (char*)ft_calloc(padding + ft_strlen(tmp) + 2, sizeof(char));
+	if (!(rt = (char*)ft_calloc(padding + ft_strlen(tmp) + 2, sizeof(char))))
+		return (NULL);
 	if (ft_issign(*tmp))
 		rt[0] = *tmp++;
 	if (space)
@@ -62,7 +64,9 @@ char	*precise_int(t_flags *flags, char *str)
 		rt = p_int1(tmp, flags->width, flags->minus, flags->space);
 	else
 	{
-		rt = (char*)ft_calloc(flags->width + ft_strlen(tmp) + 1, sizeof(char));
+		if (!(rt = (char*)ft_calloc(flags->width + ft_strlen(tmp) + 1,
+						sizeof(char))))
+			return (NULL);
 		while (flags->width-- > (int)ft_strlen(tmp))
 			ft_strlcat(rt, " ", ft_strlen(rt) + 2);
 		ft_strlcat(rt, tmp, ft_strlen(tmp) + ft_strlen(rt) + 1);
