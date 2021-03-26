@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:09:31 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/23 11:16:58 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/26 08:07:32 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_flags(t_flags *flags)
 int		handle_flags(va_list args, t_flags *flags)
 {
 	if (flags->percent)
-		return (ft_putstr_ret("%\0"));
+		return (handle_percent_string(flags));
 	if (flags->c)
 		return (handle_c(args, flags));
 	if (flags->d)

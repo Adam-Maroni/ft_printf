@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:02:23 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/23 11:24:48 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/26 08:08:06 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void				handle_convertor(t_flags *flags, char c);
 void				handle_percent(t_flags *flags);
 void				fill_flags(int *rt, va_list args,
 		char **string, t_flags *flags);
+int					handle_percent_string(t_flags *flags);
 int					handle_flags(va_list args, t_flags *flags);
 int					read_str(char *string, va_list args);
 int					ft_printf(const char *input, ...);
