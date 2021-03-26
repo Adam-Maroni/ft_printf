@@ -6,7 +6,7 @@
 /*   By: amaroni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:30:26 by amaroni           #+#    #+#             */
-/*   Updated: 2021/03/22 15:12:11 by amaroni          ###   ########.fr       */
+/*   Updated: 2021/03/26 07:37:01 by amaroni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		handle_s(va_list args, t_flags *flags)
 	int		i;
 
 	tmp = ft_strdup(va_arg(args, char*));
-	if (!tmp && (!flags->dot || flags->precision >= (int)ft_strlen("(null)")))
+	if (!tmp && (!flags->dot || flags->precision))
 		tmp = ft_strdup("(null)");
 	tmp2 = handle_s_precision(flags->precision, tmp, flags->dot);
 	rt = handle_s_width(flags->width, tmp2, flags->minus);
